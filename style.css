@@ -1,0 +1,1358 @@
+/* ==========================================================================
+   Variables (adjust to match your design)
+   ========================================================================== */
+:root {
+    --page-width: 1100px;
+    --bg: #0b0b14;
+    --surface: #14132a;
+    --border: #2a2940;
+    --text: #f2f2f8;
+    --muted: #9a9ab5;
+    --blue: #6ea8ff;
+    --violet: #a78bfa;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    color: var(--text);
+    font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+
+    background-color: #080711;
+
+    background-image:
+        radial-gradient(
+            ellipse at 15% 18%,
+            rgba(109, 40, 217, 0.16),
+            transparent 38%
+        ),
+        radial-gradient(
+            ellipse at 85% 45%,
+            rgba(91, 33, 182, 0.10),
+            transparent 36%
+        ),
+        radial-gradient(
+            ellipse at 50% 100%,
+            rgba(124, 58, 237, 0.08),
+            transparent 42%
+        ),
+        linear-gradient(
+            rgba(167, 139, 250, 0.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(167, 139, 250, 0.035) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        auto,
+        auto,
+        auto,
+        48px 48px,
+        48px 48px;
+
+    background-attachment: fixed;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+/* ==========================================================================
+   Header and navigation
+   ========================================================================== */
+.site-header {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 28px 24px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+}
+
+.brand {
+    color: var(--blue);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.brand-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.back-home {
+    color: var(--muted);
+    font-size: 0.8rem;
+    transition: color 180ms ease, text-shadow 180ms ease;
+}
+
+.back-home:hover {
+    color: #67e8f9;
+    text-shadow: 0 0 8px rgba(103, 232, 249, 0.4);
+}
+
+.back-home:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 3px;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.main-nav a {
+    color: var(--muted);
+    font-size: 0.9rem;
+    transition: color 180ms ease, text-shadow 180ms ease;
+}
+
+.main-nav a:hover {
+    color: #67e8f9;
+    text-shadow:
+        0 0 8px rgba(103, 232, 249, 0.5),
+        0 0 16px rgba(103, 232, 249, 0.2);
+}
+
+/* ==========================================================================
+   Main content width
+   ========================================================================== */
+main,
+footer {
+    width: min(100% - 48px, var(--page-width));
+    margin-inline: auto;
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+html {
+    scroll-behavior: smooth;
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(240px, 0.8fr);
+    align-items: center;
+    gap: 48px;
+    padding: 72px 0 40px;
+}
+
+.hero-content {
+    text-align: left;
+    min-width: 0;
+}
+
+.hero-content h1 {
+    margin: 0 0 14px;
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(1.65rem, 3.1vw, 2.8rem);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.045em;
+
+    background: linear-gradient(
+        100deg,
+        #ffffff 0%,
+        #e9d5ff 35%,
+        #c4b5fd 65%,
+        #a78bfa 100%
+    );
+    background-size: 200% 100%;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    filter: drop-shadow(0 0 18px rgba(139, 92, 246, 0.18));
+    animation: title-glow 8s ease-in-out infinite alternate;
+}
+
+@keyframes title-glow {
+    from {
+        background-position: 0% 50%;
+    }
+
+    to {
+        background-position: 100% 50%;
+    }
+}
+
+.hero-subtitle {
+    max-width: 60ch;
+    margin: 0 0 32px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.98rem;
+    line-height: 1.75;
+    color: #b8b2c9;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 20px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+.button-primary {
+    background: var(--violet);
+    color: #0b0b14;
+}
+
+.button-primary:hover {
+    background: var(--blue);
+}
+
+.button-secondary {
+    border-color: var(--border);
+    color: var(--text);
+}
+
+.button-secondary:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+    box-shadow: 0 0 14px rgba(110, 168, 255, 0.18);
+}
+
+.hero-quote {
+    justify-self: end;
+    width: 95%;
+    max-width: 380px;
+    margin: 0;
+    padding: 0;
+
+    text-align: right;
+    font-style: italic;
+    border: none;
+    background: none;
+}
+
+.hero-quote p {
+    margin: 12px 0;
+    line-height: 1.7;
+    color: #c4b5fd;
+    text-shadow: 0 0 10px rgba(139, 92, 246, 0.25);
+}
+
+.hero-quote p:first-child {
+    color: #d8b4fe;
+    font-size: 1.1rem;
+}
+
+.hero-quote p:last-child {
+    color: #a78bfa;
+    font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   Projects section
+   ========================================================================== */
+.projects-section {
+    padding: 56px 0 80px;
+}
+
+.section-heading {
+    margin-bottom: 28px;
+}
+
+.eyebrow {
+    color: var(--violet);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+}
+
+.section-heading h2 {
+    margin: 8px 0 0;
+    font-family: Arial, sans-serif;
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+    line-height: 1.2;
+}
+
+/* Carousel with slim vertical controls */
+.projects-carousel {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+    width: 100%;
+}
+
+.projects-grid {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+
+    padding: 22px 14px;
+    margin: -18px -14px;
+}
+
+.projects-track {
+    display: flex;
+    align-items: stretch;
+    gap: 24px;
+    transition: transform 0.45s ease;
+}
+
+.projects-track .project-card {
+    flex: 0 0 calc((100% - 24px) / 2);
+    min-width: 0;
+}
+
+/* Large, frameless carousel arrows */
+.project-arrow {
+    --arrow-stretch: 5;   /* 1 = square chevron, 2 = twice as tall */
+
+    flex: 0 0 34px;
+    width: 34px;
+    align-self: stretch;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+
+    color: var(--blue);
+    font-size: 0;
+    cursor: pointer;
+
+    transition:
+        color 0.25s ease,
+        filter 0.25s ease,
+        opacity 0.25s ease;
+}
+
+/* Draw a thick chevron instead of a text arrow */
+.project-arrow::before {
+    content: "";
+    display: block;
+    width: 21px;
+    height: 21px;
+
+    border-top: 4px solid currentColor;
+    border-right: 4px solid currentColor;
+    border-radius: 2px;
+
+    transition:
+        filter 0.25s ease,
+        transform 0.25s ease;
+}
+
+/* Previous: point left (rotate, then stretch vertically) */
+#projects-prev::before {
+    transform: scaleY(var(--arrow-stretch)) rotate(-135deg);
+}
+
+/* Next: point right (rotate, then stretch vertically) */
+#projects-next::before {
+    transform: scaleY(var(--arrow-stretch)) rotate(45deg);
+}
+
+/* Blue glow on hover */
+.project-arrow:hover:not(:disabled) {
+    color: #dbeafe;
+    filter: drop-shadow(0 0 5px rgba(110, 168, 255, 0.9))
+            drop-shadow(0 0 12px rgba(110, 168, 255, 0.55));
+}
+
+.project-arrow:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+    filter: none;
+}
+
+.project-arrow:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* Project cards */
+.project-card {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+
+    background: linear-gradient(
+        145deg,
+        rgba(25, 19, 43, 0.92),
+        rgba(12, 10, 23, 0.96)
+    );
+
+    border: 1px solid rgba(167, 139, 250, 0.18);
+    border-radius: 14px;
+
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--blue);
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.25),
+        0 0 18px rgba(110, 168, 255, 0.25),
+        0 0 35px rgba(110, 168, 255, 0.12);
+}
+
+.project-image {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    isolation: isolate;
+    aspect-ratio: 16 / 10;
+    border-radius: 10px;
+    background: #11101f;
+}
+
+.project-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    border: 1px solid rgba(110, 168, 255, 0);
+    background: linear-gradient(
+        135deg,
+        rgba(110, 168, 255, 0.16),
+        transparent 55%,
+        rgba(110, 168, 255, 0.08)
+    );
+
+    opacity: 0;
+    transition:
+        opacity 0.35s ease,
+        border-color 0.35s ease;
+
+    z-index: 1;
+}
+
+.project-card:hover .project-image::after {
+    opacity: 1;
+    border-color: rgba(110, 168, 255, 0.85);
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition:
+        transform 0.5s ease,
+        filter 0.5s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.035);
+    filter: brightness(1.08) saturate(1.08);
+}
+
+.image-hint {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    padding: 6px 9px;
+    border: 1px solid #ffffff30;
+    border-radius: 5px;
+    background: #080910cc;
+    color: white;
+    font-size: 0.7rem;
+    opacity: 0;
+    transition: opacity 180ms ease;
+    z-index: 2;
+}
+
+.project-image:hover .image-hint {
+    opacity: 1;
+}
+
+.project-info {
+    padding: 22px;
+}
+
+.project-category {
+    margin: 0;
+    color: #b39aff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.project-info h3 {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    line-height: 1.35;
+}
+
+.project-info > p:not(.project-category) {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--blue);
+    font-size: 0.9rem;
+    transition:
+        color 0.25s ease,
+        text-shadow 0.25s ease;
+}
+
+.project-link:hover {
+    color: #67e8f9;
+    text-shadow:
+        0 0 8px rgba(103, 232, 249, 0.65),
+        0 0 18px rgba(56, 189, 248, 0.3);
+}
+
+/* ==========================================================================
+   All projects page (horizontal cards)
+   ========================================================================== */
+.all-projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.all-projects-grid .project-card {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    align-items: stretch;
+    min-width: 0;
+}
+
+.all-projects-grid .project-image {
+    width: 100%;
+    height: 100%;
+    min-height: 175px;
+    aspect-ratio: auto;
+    border-radius: 10px 0 0 10px;
+}
+
+.all-projects-grid .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.all-projects-grid .project-info {
+    align-self: center;
+    padding: 22px 26px;
+}
+
+.all-projects-grid .project-info h2 {
+    margin: 8px 0 10px;
+    font-size: 1.2rem;
+    line-height: 1.4;
+}
+
+.all-projects-grid .project-info > p:not(.project-category) {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.7;
+}
+
+.all-projects-grid .project-link {
+    margin-top: 14px;
+}
+
+.page-intro {
+    max-width: 65ch;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+footer {
+    padding: 40px 0 56px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+
+footer p {
+    margin: 0 0 8px;
+    color: var(--muted);
+}
+
+footer a {
+    color: var(--blue);
+    font-weight: 600;
+    transition: color 180ms ease;
+}
+
+footer a:hover {
+    color: #67e8f9;
+    text-shadow:
+        0 0 8px rgba(103, 232, 249, 0.65),
+        0 0 18px rgba(56, 189, 248, 0.3);
+}
+
+.construction-note {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin: 32px 0 0;
+    color: #8f86a8;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    opacity: 0.8;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #a78bfa;
+    box-shadow: 0 0 8px rgba(167, 139, 250, 0.6);
+}
+
+/* ==========================================================================
+   Mist cursor effect
+   ========================================================================== */
+.mist-particle {
+    position: fixed;
+    z-index: 9999;
+    width: var(--mist-size, 12px);
+    height: var(--mist-size, 12px);
+    border-radius: 50%;
+    pointer-events: none;
+
+    background: radial-gradient(
+        circle,
+        rgba(235, 245, 255, 0.9) 0%,
+        rgba(110, 168, 255, 0.65) 30%,
+        rgba(110, 168, 255, 0.25) 55%,
+        rgba(110, 168, 255, 0) 78%
+    );
+
+    box-shadow:
+        0 0 12px rgba(110, 168, 255, 0.4),
+        0 0 24px rgba(110, 168, 255, 0.2);
+    filter: blur(2px);
+
+    animation: mist-drift 1s ease-out forwards;
+}
+
+@keyframes mist-drift {
+    0% {
+        opacity: 0;
+        transform: translate(0, 0) scale(0.5);
+    }
+
+    20% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(var(--mist-x), var(--mist-y))
+            scale(2.5);
+    }
+}
+
+/* ==========================================================================
+   Responsive (keep below the rules above so it overrides them)
+   ========================================================================== */
+@media (max-width: 640px) {
+    .site-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .main-nav {
+        gap: 20px;
+    }
+
+    main,
+    footer {
+        width: calc(100% - 32px);
+    }
+
+    .project-info {
+        padding: 18px;
+    }
+
+    .projects-grid {
+        padding: 18px 8px;
+        margin: -14px -8px;
+    }
+
+    /* All projects page: stack the image above the information */
+    .all-projects-grid .project-card {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .all-projects-grid .project-image {
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 16 / 9;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .all-projects-grid .project-info {
+        padding: 18px;
+    }
+}
+
+/* 700px matches the breakpoint used by the carousel in script.js */
+@media (max-width: 700px) {
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 48px 0 24px;
+    }
+
+    .hero-quote {
+        justify-self: start;
+        max-width: 100%;
+        text-align: left;
+    }
+
+    .projects-carousel {
+        gap: 6px;
+    }
+
+    .project-arrow {
+        flex-basis: 28px;
+        width: 28px;
+    }
+
+    .project-arrow::before {
+        width: 14px;
+        height: 14px;
+        border-width: 3px;
+    }
+
+    .projects-track {
+        gap: 18px;
+    }
+
+    .projects-track .project-card {
+        flex-basis: 100%;
+    }
+}
+
+/* ==========================================================================
+   Reduced motion (last, so it overrides everything above)
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+    .hero-content h1 {
+        animation: none;
+    }
+
+    .projects-track,
+    .project-arrow,
+    .project-arrow::before,
+    .project-card,
+    .project-image img,
+    .project-image::after,
+    .project-link {
+        transition: none;
+    }
+
+    .project-card:hover,
+    .project-card:hover .project-image img {
+        transform: none;
+    }
+
+    .project-card:hover .project-image img {
+        filter: none;
+    }
+
+    .mist-particle {
+        animation-duration: 0.4s;
+    }
+}
+
+
+
+
+
+
+/* ==========================================================================
+   Construction page
+   ========================================================================== */
+
+.construction-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.construction-page main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.construction-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 35px 0 55px;
+    text-align: center;
+}
+
+.construction-eyebrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 0 22px;
+    color: #67e8f9;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+}
+
+.construction-indicator {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #67e8f9;
+    box-shadow: 0 0 12px rgba(103, 232, 249, 0.8);
+    animation: construction-pulse 1.8s ease-in-out infinite;
+}
+
+.construction-content h1 {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin: 0;
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(1.8rem, 5vw, 3.3rem);
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+    color: #f2f2f8;
+}
+
+.construction-content h1 span {
+    color: #a78bfa;
+    text-shadow: 0 0 24px rgba(167, 139, 250, 0.22);
+}
+
+.construction-message {
+    margin: 20px 0 0;
+    color: #b8b2c9;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.construction-message span {
+    display: block;
+    color: #c4b5fd;
+}
+
+/* Robot scene */
+
+.robot-scene {
+    width: min(100%, 440px);
+    margin: 25px auto 15px;
+}
+
+.robot-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin-bottom: 10px;
+    color: #9a9ab5;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+}
+
+.robot-status .status-dot {
+    background: #67e8f9;
+    box-shadow: 0 0 10px rgba(103, 232, 249, 0.7);
+}
+
+.robot-workspace {
+    position: relative;
+    height: 245px;
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid rgba(167, 139, 250, 0.16);
+    border-radius: 14px;
+    background:
+        radial-gradient(
+            ellipse at 50% 100%,
+            rgba(110, 168, 255, 0.12),
+            transparent 60%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(20, 19, 42, 0.72),
+            rgba(8, 7, 17, 0.94)
+        );
+    box-shadow:
+        inset 0 0 35px rgba(110, 168, 255, 0.035),
+        0 0 30px rgba(110, 168, 255, 0.04);
+}
+
+/* Subtle floor grid */
+
+.robot-workspace::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image:
+        linear-gradient(
+            rgba(167, 139, 250, 0.07) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(167, 139, 250, 0.07) 1px,
+            transparent 1px
+        );
+    background-size: 24px 24px;
+    mask-image: linear-gradient(transparent, black);
+}
+
+/* Brick wall */
+
+.brick-wall {
+    position: absolute;
+    right: 8%;
+    bottom: 48px;
+    width: 124px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.brick-row {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    height: 22px;
+}
+
+.brick {
+    flex: 1;
+    min-width: 0;
+    border: 1px solid rgba(196, 181, 253, 0.7);
+    border-radius: 3px;
+    background: linear-gradient(
+        135deg,
+        #8b5cf6,
+        #4c1d95
+    );
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.18),
+        0 0 9px rgba(139, 92, 246, 0.18);
+}
+
+.brick-row-two {
+    transform: translateX(-8px);
+}
+
+.brick-row-three {
+    transform: translateX(8px);
+}
+
+/* Robot base */
+
+.robot-base {
+    position: absolute;
+    left: 25%;
+    bottom: 20px;
+    width: 92px;
+    height: 35px;
+    border: 1px solid #6ea8ff;
+    border-radius: 9px 9px 5px 5px;
+    background: linear-gradient(135deg, #27244b, #11101f);
+    box-shadow:
+        0 0 15px rgba(110, 168, 255, 0.13),
+        inset 0 0 12px rgba(110, 168, 255, 0.08);
+}
+
+.robot-base-light {
+    position: absolute;
+    top: 7px;
+    left: 50%;
+    width: 25px;
+    height: 3px;
+    border-radius: 5px;
+    background: #67e8f9;
+    box-shadow: 0 0 10px rgba(103, 232, 249, 0.9);
+    transform: translateX(-50%);
+    animation: construction-pulse 1.8s ease-in-out infinite;
+}
+
+.robot-platform {
+    position: absolute;
+    left: 12%;
+    right: 8%;
+    bottom: 12px;
+    height: 8px;
+    border: 1px solid rgba(110, 168, 255, 0.45);
+    border-radius: 50%;
+    background: linear-gradient(
+        90deg,
+        #17152d,
+        #34305b,
+        #17152d
+    );
+    box-shadow: 0 4px 14px rgba(110, 168, 255, 0.12);
+}
+
+/* Articulated robot arm */
+
+.robot-arm {
+    position: absolute;
+    left: 50%;
+    bottom: 53px;
+    width: 0;
+    height: 0;
+    z-index: 3;
+}
+
+.robot-joint {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border: 3px solid #6ea8ff;
+    border-radius: 50%;
+    background: #17152d;
+    box-shadow:
+        0 0 10px rgba(110, 168, 255, 0.3),
+        inset 0 0 5px rgba(110, 168, 255, 0.2);
+}
+
+/* Fixed base joint */
+.robot-joint-base {
+    left: -11px;
+    top: -5px;
+}
+
+/* Upper cylinder and elbow move together */
+.robot-upper-arm {
+    position: absolute;
+    left: -5px;
+    bottom: 7px;
+    width: 14px;
+    height: 72px;
+    border: 1px solid #6ea8ff;
+    border-radius: 8px;
+    background: linear-gradient(
+        90deg,
+        #29264d,
+        #6ea8ff,
+        #29264d
+    );
+    transform-origin: 50% 100%;
+    animation: robot-upper-pivot 4s ease-in-out infinite;
+}
+
+/* This joint stays attached to the upper cylinder */
+.robot-joint-elbow {
+    left: -7px;
+    top: -8px;
+}
+
+/* Lower cylinder and hand pivot together at the elbow */
+.robot-lower-arm {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 12px;
+    height: 65px;
+    border: 1px solid #6ea8ff;
+    border-radius: 7px;
+    background: linear-gradient(
+        90deg,
+        #29264d,
+        #6ea8ff,
+        #29264d
+    );
+    transform-origin: 50% 0%;
+    animation: robot-lower-pivot 4s ease-in-out infinite;
+}
+
+.robot-joint-wrist {
+    left: -7px;
+    bottom: -5px;
+    width: 18px;
+    height: 18px;
+    border-color: #67e8f9;
+}
+
+.robot-gripper {
+    position: absolute;
+    left: -8px;
+    bottom: -20px;
+    width: 28px;
+    height: 13px;
+}
+
+.robot-gripper span {
+    position: absolute;
+    top: 0;
+    width: 5px;
+    height: 15px;
+    border-radius: 3px;
+    background: #67e8f9;
+    box-shadow: 0 0 8px rgba(103, 232, 249, 0.45);
+}
+
+.robot-gripper span:first-child {
+    left: 2px;
+    transform: rotate(12deg);
+}
+
+.robot-gripper span:last-child {
+    right: 2px;
+    transform: rotate(-12deg);
+}
+
+/* Independent brick travelling from the bench to the wall */
+.moving-brick {
+    position: absolute;
+    left: 33%;
+    bottom: 63px;
+    z-index: 2;
+
+    width: 29px;
+    height: 17px;
+
+    border: 1px solid #d8b4fe;
+    border-radius: 3px;
+
+    background: linear-gradient(
+        135deg,
+        #a78bfa,
+        #6d28d9
+    );
+
+    box-shadow:
+        0 0 12px rgba(167, 139, 250, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+
+    opacity: 0;
+    pointer-events: none;
+
+    animation: brick-delivery 4s linear infinite;
+}
+
+/* Animation timing */
+
+@keyframes robot-upper-pivot {
+    /* Arm starts on the right */
+    0%, 100% {
+        transform: rotate(8deg);
+    }
+
+    /* Swing left */
+    25% {
+        transform: rotate(-22deg);
+    }
+
+    /* Begin returning right */
+    50% {
+        transform: rotate(-5deg);
+    }
+
+    /* Continue right */
+    75% {
+        transform: rotate(12deg);
+    }
+}
+
+@keyframes robot-lower-pivot {
+    /* Lower arm starts angled right */
+    0%, 100% {
+        transform: rotate(-25deg);
+    }
+
+    /* Reach farther left */
+    25% {
+        transform: rotate(58deg);
+    }
+
+    /* Start returning */
+    50% {
+        transform: rotate(15deg);
+    }
+
+    /* Swing back to the right */
+    75% {
+        transform: rotate(-38deg);
+    }
+}
+
+@keyframes brick-delivery {
+    /* Wait invisibly before the next brick appears */
+    0%, 8% {
+        left: 33%;
+        opacity: 0;
+    }
+
+    /* Appear and pause above the cyan bench line */
+    10%, 30% {
+        left: 33%;
+        opacity: 1;
+    }
+
+    /* Move slowly toward the wall */
+    80% {
+        left: 68%;
+        opacity: 1;
+    }
+
+    /* Disappear into the wall */
+    85%, 100% {
+        left: 69%;
+        opacity: 0;
+    }
+}
+
+.robot-caption {
+    margin: 13px 0 0;
+    color: #9a9ab5;
+    font-size: 0.67rem;
+    letter-spacing: 0.15em;
+}
+
+.loading-dots {
+    display: inline-block;
+    width: 18px;
+    overflow: hidden;
+    vertical-align: bottom;
+    animation: loading-dots 1.2s steps(4, end) infinite;
+}
+
+.construction-home {
+    margin-top: 20px;
+}
+
+.construction-footer {
+    padding: 18px 0 28px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+
+.construction-footer p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+
+/* Small animations */
+
+@keyframes construction-pulse {
+    0%, 100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes loading-dots {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 18px;
+    }
+}
+
+/* Responsive layout */
+
+@media (max-width: 640px) {
+    .construction-content {
+        padding-top: 25px;
+    }
+
+    .construction-workspace {
+        width: 100%;
+    }
+
+    .robot-workspace {
+        height: 220px;
+    }
+
+    .brick-wall {
+        right: 5%;
+        transform: scale(0.85);
+        transform-origin: bottom right;
+    }
+
+    .robot-base {
+        left: 18%;
+        transform: scale(0.9);
+        transform-origin: bottom left;
+    }
+
+    .robot-arm {
+        left: 50%;
+    }
+}
+
+/* Accessibility: respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+    .construction-page *,
+    .construction-page *::before,
+    .construction-page *::after {
+        animation: none !important;
+        scroll-behavior: auto !important;
+    }
+
+    .moving-brick {
+        opacity: 0;
+    }
+}
